@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prediction result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  </head>
+  <body>
+    <main class="card result">
+      <p class="eyebrow">Strive for a healthy heart</p>
+      <h1>Prediction result</h1>
+      {% if has_disease %}
+        <p class="result-message">The model predicts a heart disease indicator.</p>
+      {% else %}
+        <p class="result-message">The model does not predict a heart disease indicator.</p>
+      {% endif %}
+      <p class="disclaimer">This result is not a diagnosis. Consult a qualified healthcare professional about health concerns.</p>
+      <a class="button-link" href="{{ url_for('home') }}">Make another prediction</a>
+    </main>
+  </body>
+</html>
