@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Heart health assessment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  </head>
+  <body>
+    <main class="card">
+      <p class="eyebrow">Strive for a healthy heart</p>
+      <h1>Heart health assessment</h1>
+      <p class="intro">Enter the measurements below to view the model's prediction.</p>
+
+      {% if error %}
+        <p class="error" role="alert">{{ error }}</p>
+      {% endif %}
+
+      <form action="{{ url_for('predict') }}" method="post">
+        <div class="fields">
+          <label>Age
+            <input name="age" type="number" min="1" max="120" value="52" required>
+          </label>
+          <label>Sex
+            <select name="sex" required>
+              <option value="1">Male (1)</option>
+              <option value="0">Female (0)</option>
+            </select>
+          </label>
+          <label>Chest pain type
+            <select name="cp" required>
+              <option value="0">Typical angina (0)</option>
+              <option value="1">Atypical angina (1)</option>
+              <option value="2">Non-anginal pain (2)</option>
+              <option value="3">Asymptomatic (3)</option>
+            </select>
+          </label>
+          <label>Resting blood pressure (mm Hg)
+            <input name="trestbps" type="number" min="50" max="250" value="125" required>
+          </label>
+          <label>Cholesterol (mg/dl)
+            <input name="chol" type="number" min="50" max="700" value="212" required>
+          </label>
+          <label>Fasting blood sugar &gt; 120 mg/dl
+            <select name="fbs" required>
+              <option value="0">No (0)</option>
+              <option value="1">Yes (1)</option>
+            </select>
+          </label>
+          <label>Resting ECG
+            <select name="restecg" required>
+              <option value="0">Normal (0)</option>
+              <option value="1">ST-T abnormality (1)</option>
+              <option value="2">Left ventricular hypertrophy (2)</option>
+            </select>
+          </label>
+          <label>Maximum heart rate
+            <input name="thalach" type="number" min="50" max="250" value="168" required>
+          </label>
+          <label>Exercise-induced angina
+            <select name="exang" required>
+              <option value="0">No (0)</option>
+              <option value="1">Yes (1)</option>
+            </select>
+          </label>
+          <label>ST depression (oldpeak)
+            <input name="oldpeak" type="number" min="0" max="10" step="0.1" value="1" required>
+          </label>
+          <label>Slope of peak exercise ST segment
+            <select name="slope" required>
+              <option value="0">Upsloping (0)</option>
+              <option value="1">Flat (1)</option>
+              <option value="2">Downsloping (2)</option>
+            </select>
+          </label>
+          <label>Number of major vessels (ca)
+            <select name="ca" required>
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </label>
+          <label>Thalassemia (thal)
+            <select name="thal" required>
+              <option value="0">Unknown (0)</option>
+              <option value="1">Normal (1)</option>
+              <option value="2">Fixed defect (2)</option>
+              <option value="3">Reversible defect (3)</option>
+            </select>
+          </label>
+        </div>
+        <button type="submit">Get prediction</button>
+      </form>
+      <p class="disclaimer">This tool is for educational purposes only and is not a medical diagnosis.</p>
+    </main>
+  </body>
+</html>
